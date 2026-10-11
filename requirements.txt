@@ -1,0 +1,30 @@
+# API
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+pydantic-settings>=2.2
+python-dotenv>=1.0
+httpx>=0.27
+
+# Agent framework
+langgraph>=0.2
+langgraph-checkpoint-sqlite
+langchain>=0.3
+langchain-core>=0.3
+langchain-community>=0.3
+
+# LLM providers
+langchain-groq>=0.2
+langchain-mistralai>=0.1.0        # LangChain wrapper for Mistral API
+
+# RAG
+pypdf>=3.0
+langchain-chroma>=0.1
+chromadb>=0.5                    
+tiktoken>=0.7.0   
+
+# Database
+sqlalchemy>=2.0
+
+# Tests
+pytest>=8.0

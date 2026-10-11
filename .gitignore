@@ -1,0 +1,20 @@
+# Ignore database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Ignore generated vector database
+vector_db/
+
+# Keep the knowledge base PDF tracked
+!data/
+data/*
+!data/Vantis_Energy_Solutions_Knowledge_Base.pdf
+
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
