@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf4f7">
+  <title>Vantis — WhatsApp conversation demo</title>
+  <style>
+    :root{--navy:#102e59;--deep:#0b2143;--ink:#203148;--muted:#738196;--sun:#f4a51c;--sky:#edf4f7;--line:#dfe7ed;--green:#17966b}
+    *{box-sizing:border-box}body{min-height:100vh;margin:0;background:var(--sky);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}a{color:inherit}.wrap{width:min(1050px,calc(100% - 38px));margin:auto}.topbar{height:70px;border-bottom:1px solid #dfe7ed;background:#f6f9fa}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:var(--navy);text-decoration:none}.mark{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;background:var(--navy)}.mark svg{width:28px}.brand strong{display:block;font-size:16px;line-height:1.2}.brand small{color:var(--muted);font-size:10px}.back{font-size:11px;font-weight:700;text-decoration:none;color:#506178}.back:hover{color:var(--navy)}
+    .layout{min-height:calc(100vh - 70px);display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;padding-block:48px}
+    .eyebrow{color:#9a6810;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.intro h1{margin:13px 0 14px;color:var(--navy);font-size:clamp(36px,5vw,55px);line-height:1.04;letter-spacing:-.055em}.intro p{max-width:420px;color:#65758a;font-size:14px;line-height:1.8}.info{margin-top:27px;padding:16px 17px;border-left:3px solid var(--sun);background:#ffffffa6;color:#647286;font-size:11px;line-height:1.75}.info strong{display:block;margin-bottom:4px;color:var(--navy)}
+    .phone-wrap{display:grid;place-items:center}.phone{width:min(410px,100%);height:min(690px,calc(100vh - 110px));min-height:540px;display:flex;flex-direction:column;overflow:hidden;border:7px solid var(--navy);border-radius:28px;background:#f7f5ee;box-shadow:0 25px 70px #102e5922}
+    .chat-head{display:flex;align-items:center;gap:10px;padding:13px 14px;background:#fff;border-bottom:1px solid #e9ecea}.chat-head .mark{width:35px;height:35px;border-radius:50%}.chat-head .mark svg{width:26px}.chat-title{flex:1}.chat-title strong{display:block;color:var(--navy);font-size:13px}.chat-title span{display:block;color:var(--green);font-size:10px}.reset{width:32px;height:32px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--navy);font-size:16px}
+    .chat-body{flex:1;overflow:auto;padding:16px 13px;background-color:#f7f5ee;background-image:radial-gradient(#cfcfc033 .8px,transparent .8px);background-size:17px 17px;scroll-behavior:smooth}
+    .bubble{width:fit-content;max-width:88%;margin:0 0 9px;padding:9px 11px;border-radius:12px;background:white;box-shadow:0 1px 2px #15263a12;color:#38485a;font-size:11px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.user{margin-left:auto;border-top-right-radius:3px;background:#dcf8c7}.bubble.bot{border-top-left-radius:3px}.bubble.error{background:#fff0ed;color:#943e2e}.welcome{margin-bottom:13px;text-align:center}.welcome span{display:inline-block;padding:6px 10px;border-radius:7px;background:#fff8d8;color:#796426;font-size:9px}
+    .compose{padding:10px;background:#fff;border-top:1px solid #e7ece9}.phone-form{display:flex;gap:7px}.phone-form input{width:100%;min-width:0;height:38px;padding:0 10px;border:1px solid #d6dfe4;border-radius:10px;outline:none;font-size:10px}.phone-form input:focus{border-color:#728ba9;box-shadow:0 0 0 3px #728ba922}.phone-form button{width:40px;height:38px;flex:none;border:0;border-radius:10px;background:var(--sun);color:var(--deep);font-size:17px;font-weight:800}.phone-form button:disabled{opacity:.55}.number{display:flex;gap:7px;align-items:center;margin-bottom:8px}.number label{flex:none;color:#68788a;font-size:9px}.number input{height:32px}.hint{margin:7px 2px 0;color:#8793a1;font-size:8px}
+    .toast{position:fixed;right:17px;bottom:17px;padding:10px 13px;border-radius:9px;background:var(--deep);color:white;font-size:10px;opacity:0;transition:.2s}.toast.show{opacity:1}
+    @media(max-width:760px){.layout{grid-template-columns:1fr;gap:26px;padding-block:34px}.intro h1{font-size:39px}.phone{height:650px;min-height:500px}.info{margin-top:17px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><nav class="nav wrap"><a class="brand" href="/" aria-label="Vantis home"><span class="mark"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/></svg></span><span><strong>Vantis</strong><small>Energy Solutions</small></span></a><a class="back" href="/">← &nbsp;Back to Vantis</a></nav></header>
+  <main class="layout wrap">
+    <section class="intro"><span class="eyebrow">Conversation preview</span><h1>Solar guidance, right in the chat.</h1><p>Try a WhatsApp-style conversation with the Vantis assistant. Send a question about rooftop solar, service areas or support and see the reply.</p><div class="info"><strong>A demo connected to the Vantis assistant</strong>Your message is sent to the existing WhatsApp webhook endpoint. The phone number is used as the sender identifier for this conversation.</div></section>
+    <section class="phone-wrap" aria-label="WhatsApp conversation">
+      <div class="phone">
+        <div class="chat-head"><span class="mark"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/></svg></span><div class="chat-title"><strong>Vantis Energy Solutions</strong><span>● &nbsp;Typically replies with helpful guidance</span></div><button class="reset" id="reset" aria-label="Clear conversation">↻</button></div>
+        <div class="chat-body" id="chatBody" role="log" aria-live="polite"><div class="welcome"><span>This is a simulated WhatsApp conversation.</span></div><div class="bubble bot">Hi! Welcome to Vantis Energy Solutions. How can I help you with rooftop solar today?</div></div>
+        <div class="compose">
+          <div class="number"><label for="phoneNumber">Your number</label><input id="phoneNumber" type="tel" maxlength="20" autocomplete="tel" placeholder="+91 98765 43210" aria-label="Your phone number"></div>
+          <form class="phone-form" id="messageForm"><input id="messageInput" type="text" maxlength="1000" autocomplete="off" placeholder="Type a message" aria-label="Your message"><button id="sendButton" type="submit" aria-label="Send message">➤</button></form>
+          <p class="hint">This demo sends messages to the Vantis assistant endpoint. Don't enter sensitive information.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      const API_BASE = "https://vantis-energy-solutions.onrender.com";
+      const form = document.getElementById("messageForm");
+      const input = document.getElementById("messageInput");
+      const phone = document.getElementById("phoneNumber");
+      const body = document.getElementById("chatBody");
+      const send = document.getElementById("sendButton");
+      let busy = false;
+      const addBubble = (text, user, error = false) => {
+        const bubble = document.createElement("div");
+        bubble.className = `bubble ${user ? "user" : "bot"}${error ? " error" : ""}`;
+        bubble.textContent = text;
+        body.append(bubble);
+        body.scrollTop = body.scrollHeight;
+      };
+      const notify = (text) => {
+        const toast = document.getElementById("toast");
+        toast.textContent = text;
+        toast.classList.add("show");
+        window.setTimeout(() => toast.classList.remove("show"), 2800);
+      };
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const message = input.value.trim();
+        const sender = phone.value.trim();
+        if (busy || !message) return;
+        if (sender.replace(/\D/g, "").length < 5) {
+          notify("Enter a valid phone number to send a message.");
+          phone.focus();
+          return;
+        }
+        busy = true;
+        input.value = "";
+        input.disabled = true;
+        send.disabled = true;
+        addBubble(message, true);
+        try {
+          const response = await fetch(`${API_BASE}/webhook/whatsapp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ from: sender, text: message })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.detail || `Unable to send message (${response.status}).`);
+          if (typeof data.text !== "string") throw new Error("The assistant returned an unexpected response.");
+          addBubble(data.text, false);
+        } catch (error) {
+          addBubble(error instanceof Error ? error.message : "Unable to reach the Vantis assistant. Check your connection and try again.", false, true);
+        } finally {
+          busy = false;
+          input.disabled = false;
+          send.disabled = false;
+          input.focus();
+        }
+      });
+      document.getElementById("reset").addEventListener("click", () => {
+        body.innerHTML = '<div class="welcome"><span>This is a simulated WhatsApp conversation.</span></div><div class="bubble bot">Hi! Welcome to Vantis Energy Solutions. How can I help you with rooftop solar today?</div>';
+        input.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f7f8">
+  <meta name="description" content="Discover rooftop solar for your home or business with Vantis Energy Solutions. Explore systems, service areas and get answers from the Vantis assistant.">
+  <title>Vantis Energy Solutions — Rooftop solar, made clearer</title>
+  <style>
+    :root{--navy:#102e59;--navy-deep:#0b2143;--ink:#192b43;--muted:#68778a;--sun:#f4a51c;--sun-dark:#d98b05;--sky:#edf4f7;--line:#dbe4ea;--white:#fff;--green:#26745c;--shadow:0 24px 70px #0d2d5514;--radius:22px;--max:1160px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    button,input{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .topbar{height:78px;background:#f3f7f8;border-bottom:1px solid #e4ebef;position:sticky;top:0;z-index:20;backdrop-filter:blur(16px)}
+    .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+    .brand-mark{width:42px;height:42px;display:grid;place-items:center;background:var(--navy);border-radius:11px;box-shadow:0 5px 12px #102e5926}
+    .brand-mark svg{width:30px;height:30px}
+    .brand-copy{line-height:1.15}.brand-copy strong{display:block;color:var(--navy);font-size:19px;letter-spacing:-.04em}.brand-copy span{color:var(--muted);font-size:11px;letter-spacing:.035em}
+    .nav-links{display:flex;align-items:center;gap:clamp(14px,2.4vw,31px)}
+    .nav-links a{text-decoration:none;font-size:13px;font-weight:650;color:#435166;transition:color .2s}
+    .nav-links a:hover{color:var(--sun-dark)}
+    .button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 19px;border:0;border-radius:999px;background:var(--sun);color:#17253a;text-decoration:none;font-size:13px;font-weight:750;cursor:pointer;box-shadow:0 7px 18px #e69a162b;transition:transform .2s,background .2s,box-shadow .2s}
+    .button:hover{background:#ffb629;transform:translateY(-2px);box-shadow:0 11px 24px #e69a1638}
+    .button:focus-visible,.nav-links a:focus-visible,.quick-prompt:focus-visible,summary:focus-visible{outline:3px solid #3679c5;outline-offset:3px}
+    .button-outline{background:white;border:1px solid #ccd7df;box-shadow:none;color:var(--navy)}
+    .button-outline:hover{background:var(--sky)}
+    .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;width:42px;height:42px;color:var(--navy);font-size:20px}
+    .hero{overflow:hidden;position:relative;background-color:#edf4f7;background-image:linear-gradient(#16385b0a 1px,transparent 1px),linear-gradient(90deg,#16385b0a 1px,transparent 1px);background-size:40px 40px}
+    .hero:before{content:"";position:absolute;width:430px;height:430px;right:-90px;top:-170px;border-radius:50%;background:radial-gradient(circle,#f4a51c 0 36%,#f4a51c32 36.5% 51%,transparent 51.5%);pointer-events:none}
+    .hero-grid{min-height:690px;padding-block:72px 66px;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(390px,.86fr);gap:70px;align-items:center;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:22px;height:2px;background:var(--sun)}
+    h1,h2,h3,p{margin-top:0}
+    h1{max-width:650px;margin:17px 0 20px;color:var(--navy);font-size:clamp(48px,6.4vw,76px);line-height:.99;letter-spacing:-.065em}
+    h1 em{font-style:normal;color:#e69a16}
+    .hero-copy{max-width:535px;margin:0;color:#516176;font-size:17px;line-height:1.75}
+    .prompt-label{display:block;margin:28px 0 11px;color:var(--navy);font-size:13px;font-weight:750}
+    .prompt-list{display:flex;flex-wrap:wrap;gap:9px}
+    .quick-prompt{padding:9px 14px;border:1px solid #cbd7df;border-radius:999px;background:#fff;color:#384b62;font-size:12px;font-weight:650;cursor:pointer;transition:.2s}
+    .quick-prompt:hover{border-color:#e6a019;background:#fffaf0;transform:translateY(-1px)}
+    .hero-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;padding-top:19px;border-top:2px solid var(--navy);max-width:590px}
+    .hero-fact{padding:0 14px 0 0}.hero-fact+.hero-fact{padding-left:16px;border-left:1px solid #cdd8e0}
+    .hero-fact strong{display:block;margin-bottom:3px;color:var(--navy);font-size:12px}
+    .hero-fact span{display:block;color:var(--muted);font-size:11px;line-height:1.5}
+    .assistant{position:relative;z-index:1;min-height:525px;height:min(570px,66vh);display:flex;flex-direction:column;overflow:hidden;border:7px solid var(--navy);border-radius:25px;background:#fff;box-shadow:0 28px 70px #102e5924}
+    .assistant-head{display:flex;align-items:center;gap:11px;padding:15px 16px;border-bottom:1px solid #e4ebef;background-color:#fff;background-image:linear-gradient(#102e5909 1px,transparent 1px),linear-gradient(90deg,#102e5909 1px,transparent 1px);background-size:25px 25px}
+    .assistant-head .brand-mark{width:36px;height:36px;border-radius:9px}.assistant-head .brand-mark svg{width:25px}
+    .assistant-title{min-width:0;flex:1}.assistant-title strong{display:block;color:var(--navy);font-size:14px}.assistant-title span{display:block;color:var(--muted);font-size:10px}
+    .status-dot{display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#71a78b}
+    .reset-chat{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--navy);font-size:17px;cursor:pointer}
+    .chat-log{flex:1;min-height:0;overflow-y:auto;padding:18px 15px 14px;scroll-behavior:smooth}
+    .message{width:fit-content;max-width:88%;padding:11px 13px;margin-bottom:10px;border-radius:13px;font-size:12px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+    .message.assistant-message{background:#eef4f7;color:#263b53;border-top-left-radius:4px}
+    .message.user-message{margin-left:auto;background:var(--navy);color:#fff;border-top-right-radius:4px}
+    .message.error-message{background:#fff0ed;color:#943e2e}
+    .typing{display:flex;gap:4px;width:fit-content;padding:12px 14px;background:#eef4f7;border-radius:13px}
+    .typing i{width:5px;height:5px;border-radius:50%;background:#8190a0;animation:bob 1s infinite ease-in-out}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+    @keyframes bob{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+    .chat-foot{padding:11px 11px 12px;border-top:1px solid #e5ecf0}
+    .chat-form{display:flex;gap:7px}
+    .chat-form input{width:100%;min-width:0;height:42px;padding:0 12px;border:1px solid #cbd7df;border-radius:10px;color:var(--ink);outline:none;font-size:12px}
+    .chat-form input:focus{border-color:#4b79ac;box-shadow:0 0 0 3px #4b79ac20}
+    .send-button{width:42px;height:42px;flex:none;border:0;border-radius:10px;background:var(--sun);color:var(--navy);font-size:19px;font-weight:800;cursor:pointer}
+    .send-button:disabled{opacity:.55;cursor:wait}
+    .disclaimer{margin:7px 2px 0;color:var(--muted);font-size:9px;line-height:1.45}
+    .section{padding-block:92px}
+    .section-tint{background:var(--sky)}
+    .section-heading{max-width:700px;margin-bottom:38px}
+    .section-heading h2,.split-heading h2{margin:12px 0 13px;color:var(--navy);font-size:clamp(32px,4vw,48px);line-height:1.06;letter-spacing:-.05em}
+    .section-heading p,.split-heading p{margin:0;color:var(--muted);font-size:15px;line-height:1.75}
+    .overview-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .overview-intro{position:sticky;top:110px}
+    .overview-intro h2{max-width:380px}
+    .overview-text{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .overview-card{min-height:185px;padding:23px;border:1px solid #e3eaee;border-radius:17px;background:#fff}
+    .overview-card .icon{width:38px;height:38px;display:grid;place-items:center;margin-bottom:17px;border-radius:12px;background:#fff5df;color:#b87800;font-size:18px}
+    .overview-card h3{margin:0 0 7px;color:var(--navy);font-size:15px}
+    .overview-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+    .systems-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .systems-note{padding:17px 18px;border-left:3px solid var(--sun);background:#ffffffa8;color:#58687a;font-size:12px;line-height:1.7}
+    .legend{display:flex;gap:18px;align-items:center;margin:0 0 14px;color:var(--muted);font-size:11px}
+    .legend span{display:flex;gap:7px;align-items:center}.legend i{width:13px;height:8px;border-radius:2px;background:var(--sun)}.legend span+span i{background:var(--navy)}
+    .system-row{display:grid;grid-template-columns:1fr minmax(150px,1.35fr) 45px;gap:18px;align-items:center;padding:18px 0;border-top:1px solid #cfdbe2}
+    .system-name strong{display:block;color:var(--navy);font-size:13px}.system-name span{color:var(--muted);font-size:11px}
+    .system-description{grid-column:2/4;margin-top:-11px;color:var(--muted);font-size:11px;line-height:1.6}
+    .system-bar{height:11px;overflow:hidden;border-radius:3px;background:#dfe7ec}.system-bar i{display:block;height:100%;border-radius:3px;background:var(--sun)}.commercial .system-bar i{background:var(--navy)}
+    .system-size{color:var(--navy);font-size:20px;font-weight:800;text-align:right;white-space:nowrap}.system-size small{font-size:10px}
+    .text-link{grid-column:2/4;justify-self:start;margin-top:-12px;color:var(--navy);font-size:11px;font-weight:750}
+    .text-link:hover{color:#a86500}
+    .cost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .cost-card{padding:20px 0 0;border-top:2px solid var(--navy)}
+    .cost-card h3{margin:0 0 8px;color:var(--navy);font-size:16px}
+    .cost-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}
+    .cost-foot{margin-top:29px}
+    .process-track{display:grid;grid-template-columns:repeat(8,1fr);gap:0;margin:42px 0 28px}
+    .process-step{position:relative;padding-right:13px}
+    .process-step:not(:last-child):before{content:"";position:absolute;left:38px;right:0;top:15px;height:2px;background:#c8d6df}
+    .step-number{position:relative;z-index:1;width:30px;height:30px;display:grid;place-items:center;margin-bottom:12px;border:3px solid var(--sky);border-radius:50%;background:var(--navy);color:#fff;font-size:10px;font-weight:800}
+    .process-step:last-child .step-number{background:var(--sun);color:var(--navy)}
+    .process-step strong{display:block;max-width:115px;color:var(--ink);font-size:11px;line-height:1.45}
+    .process-note{max-width:650px;color:var(--muted);font-size:13px}
+    .service-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .city-form{display:flex;gap:10px;margin:0 0 10px}
+    .city-form input{min-width:0;flex:1;height:44px;padding:0 14px;border:1px solid #cbd7df;border-radius:12px;outline:none}
+    .city-form input:focus{border-color:#4b79ac;box-shadow:0 0 0 3px #4b79ac20}
+    .city-result{min-height:26px;margin:0 0 18px;color:#856019;font-size:12px}
+    .city-result a{color:var(--navy);font-weight:700}
+    .city-groups{display:grid;grid-template-columns:1fr 1fr;gap:21px}
+    .city-group{padding-top:11px;border-top:2px solid var(--navy)}
+    .city-group h3{margin:0 0 9px;color:var(--navy);font-size:13px}
+    .city-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .city-tag{padding:5px 10px;border:1px solid #d0dbe2;border-radius:999px;background:#fff;color:#44566b;font-size:10px}
+    .city-note{margin:20px 0 0;color:var(--muted);font-size:12px}
+    .faq-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;align-items:start}
+    .faq-list details{border-bottom:1px solid #d6e0e6}
+    .faq-list summary{position:relative;padding:16px 42px 16px 0;list-style:none;color:var(--navy);font-size:13px;font-weight:700;cursor:pointer}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary:after{content:"+";position:absolute;right:0;top:11px;width:28px;height:28px;display:grid;place-items:center;border:1px solid #ccd7df;border-radius:50%;font-size:17px;font-weight:400}
+    .faq-list details[open] summary:after{content:"−"}
+    .faq-list details p{max-width:680px;margin:0;padding:0 34px 17px 0;color:var(--muted);font-size:12px;line-height:1.7}
+    .support-band{padding-block:40px;background:var(--navy-deep);color:white}
+    .support-inner{display:flex;align-items:center;justify-content:space-between;gap:35px}
+    .support-inner h2{margin:0 0 5px;font-size:25px;letter-spacing:-.04em}.support-inner p{max-width:620px;margin:0;color:#cad6e4;font-size:13px;line-height:1.7}
+    .footer{padding-block:38px 25px;background:#091a34;color:#e5ebf2}
+    .footer-top{display:flex;justify-content:space-between;gap:30px;align-items:start;padding-bottom:25px;border-bottom:1px solid #ffffff20}
+    .footer .brand-copy strong{color:#fff}.footer .brand-copy span{color:#adbdcf}
+    .footer-copy{max-width:430px;margin:13px 0 0;color:#aebdd0;font-size:11px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:18px}.footer-links a{color:#d1dbe6;text-decoration:none;font-size:11px}.footer-links a:hover{color:var(--sun)}
+    .footer-bottom{display:flex;justify-content:space-between;gap:15px;padding-top:17px;color:#9aabc0;font-size:10px}
+    .toast{position:fixed;z-index:50;right:22px;bottom:22px;max-width:min(400px,calc(100% - 44px));padding:12px 16px;border-radius:12px;background:var(--navy-deep);color:white;box-shadow:var(--shadow);font-size:12px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s}
+    .toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.nav-links{gap:13px}.nav-links a{font-size:11px}.hero-grid{grid-template-columns:1fr minmax(330px,.85fr);gap:34px}.hero-fact{padding-right:7px}.hero-fact+.hero-fact{padding-left:9px}.overview-grid,.systems-layout,.service-layout,.faq-layout{gap:38px}}
+    @media(max-width:720px){html{scroll-padding-top:76px}.wrap{width:min(100% - 34px,var(--max))}.topbar{height:68px}.brand-mark{width:38px;height:38px}.nav{gap:10px}.menu-toggle{display:block;margin-left:auto}.nav-cta{min-height:39px;padding-inline:13px;font-size:11px}.nav-links{display:none;position:absolute;top:67px;left:0;right:0;padding:15px 22px 19px;background:#f3f7f8;border-bottom:1px solid var(--line);box-shadow:0 12px 22px #0b21431c}.nav-links.open{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.nav-links a{padding:6px;font-size:12px}.hero-grid{padding-block:47px 42px;grid-template-columns:1fr;gap:34px}.hero:before{width:320px;height:320px;right:-170px;top:-80px}.hero-copy{font-size:15px}h1{max-width:560px;font-size:clamp(46px,12vw,67px)}.assistant{height:520px;min-height:440px;max-height:72vh;border-width:5px}.section{padding-block:65px}.overview-grid,.systems-layout,.service-layout,.faq-layout{grid-template-columns:1fr;gap:26px}.overview-intro{position:static}.overview-text{grid-template-columns:1fr 1fr}.section-heading{margin-bottom:26px}.system-row{grid-template-columns:1fr 1.1fr 42px;gap:10px}.system-description{grid-column:1/4;margin-top:0}.text-link{grid-column:1/4;margin-top:0}.cost-grid{grid-template-columns:1fr;gap:24px}.cost-card{padding-top:14px}.process-track{grid-template-columns:repeat(4,1fr);row-gap:25px}.process-step:nth-child(4):before{display:none}.city-groups{gap:15px}.support-inner{align-items:flex-start;flex-direction:column;gap:18px}.footer-top{flex-direction:column}.footer-bottom{flex-direction:column}}
+    @media(max-width:420px){.hero-facts{grid-template-columns:1fr;gap:10px}.hero-fact,.hero-fact+.hero-fact{padding:0;border:0}.hero-fact strong,.hero-fact span{display:inline}.hero-fact span{margin-left:4px}.overview-text{grid-template-columns:1fr}.overview-card{min-height:auto}.system-row{grid-template-columns:1fr 1fr 40px}.system-size{font-size:18px}.process-step strong{font-size:10px}.city-form{flex-wrap:wrap}.city-form input{flex-basis:100%}.city-form .button{width:100%}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Vantis Energy Solutions home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/><path d="m7 35 4-15m7 15 4-15m6 15 4-15" stroke="#91A8C3" stroke-width="1.3"/></svg></span>
+        <span class="brand-copy"><strong>Vantis</strong><span>Energy Solutions</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#systems">Systems</a><a href="#cost">Cost</a><a href="#process">Process</a><a href="#service-areas">Service areas</a><a href="#questions">Questions</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <a class="button nav-cta" href="#assistant">Talk to Vantis <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-grid wrap">
+        <div class="hero-content">
+          <span class="eyebrow">A clearer way to go solar</span>
+          <h1>Bring down your electricity costs with <em>rooftop solar.</em></h1>
+          <p class="hero-copy">Vantis designs and installs rooftop solar for homes and small businesses in selected cities across North India. Tell the assistant what you need and get a straight answer.</p>
+          <span class="prompt-label">Start with a question</span>
+          <div class="prompt-list" aria-label="Suggested questions">
+            <button class="quick-prompt" data-prompt="Do you install in Kota?">Do you install in Kota?</button>
+            <button class="quick-prompt" data-prompt="What size solar system might I need?">What size system do I need?</button>
+            <button class="quick-prompt" data-prompt="How much does rooftop solar cost?">How much does it cost?</button>
+            <button class="quick-prompt" data-prompt="I'd like to request a callback.">I want a callback</button>
+            <button class="quick-prompt" data-prompt="I have an issue with my solar system.">I have an issue with my system</button>
+          </div>
+          <div class="hero-facts">
+            <div class="hero-fact"><strong>Homes &amp; businesses</strong><span>Houses, villas, shops, offices, clinics and small warehouses</span></div>
+            <div class="hero-fact"><strong>Installation &amp; support</strong><span>Rooftop installation, monitoring and maintenance</span></div>
+            <div class="hero-fact"><strong>Selected cities</strong><span>Uttar Pradesh, Delhi NCR, Punjab, Haryana and Rajasthan</span></div>
+          </div>
+        </div>
+        <section class="assistant" id="assistant" aria-label="Vantis solar assistant">
+          <div class="assistant-head">
+            <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/><path d="m7 35 4-15m7 15 4-15m6 15 4-15" stroke="#91A8C3" stroke-width="1.3"/></svg></span>
+            <div class="assistant-title"><strong>Vantis assistant</strong><span><i class="status-dot"></i>Answers from Vantis's own information</span></div>
+            <button class="reset-chat" id="resetChat" aria-label="Start a new conversation" title="Start a new conversation">↻</button>
+          </div>
+          <div class="chat-log" id="chatLog" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="message assistant-message">Hi, I'm the Vantis assistant. Ask me about rooftop solar for your home or business, or tell me what you're looking for.</div>
+          </div>
+          <div class="chat-foot">
+            <form class="chat-form" id="chatForm">
+              <input id="chatInput" type="text" maxlength="1000" autocomplete="off" placeholder="Ask about systems, service areas or support" aria-label="Your question">
+              <button class="send-button" id="sendButton" type="submit" aria-label="Send message">→</button>
+            </form>
+            <p class="disclaimer">The assistant can't quote prices or promise savings, subsidies, warranty terms or installation dates.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="section" id="about">
+      <div class="wrap overview-grid">
+        <div class="overview-intro split-heading">
+          <span class="eyebrow">Company overview</span>
+          <h2>Solar, with a real team behind it.</h2>
+          <p>Vantis Energy Solutions helps homes and small businesses explore rooftop solar, from the first question through installation and ongoing support.</p>
+        </div>
+        <div class="overview-text">
+          <article class="overview-card"><span class="icon" aria-hidden="true">⌂</span><h3>Who we serve</h3><p>Homeowners, shops, offices, clinics and small warehouses looking for a solar option that fits their property.</p></article>
+          <article class="overview-card"><span class="icon" aria-hidden="true">☼</span><h3>What we do</h3><p>Help you understand system options, assess requirements and plan a rooftop solar installation.</p></article>
+          <article class="overview-card"><span class="icon" aria-hidden="true">⌁</span><h3>Where we work</h3><p>Selected locations across Uttar Pradesh, Delhi NCR, Punjab, Haryana and Rajasthan. City coverage is confirmed case by case.</p></article>
+          <article class="overview-card"><span class="icon" aria-hidden="true">↗</span><h3>After installation</h3><p>Monitoring and maintenance support, with a team to contact if you have a question or an issue with your system.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section section-tint" id="systems">
+      <div class="wrap systems-layout">
+        <div class="split-heading">
+          <span class="eyebrow">Explore your options</span>
+          <h2>Reference systems and services</h2>
+          <p class="systems-note">These are reference offerings, not final recommendations. The right fit depends on your consumption, rooftop and site assessment. Bar length shows reference capacity.</p>
+        </div>
+        <div>
+          <div class="legend"><span><i></i>Residential</span><span><i></i>Small commercial</span></div>
+          <div class="system-row"><div class="system-name"><strong>Vantis HomeStart 3</strong><span>Residential</span></div><div class="system-bar"><i style="width:12%"></i></div><div class="system-size">3<small> kW</small></div><p class="system-description">For moderate household electricity use. Final suitability depends on consumption, rooftop area and site assessment.</p><a class="text-link ask-system" href="#assistant" data-prompt="Tell me about the Vantis HomeStart 3 reference system.">Ask about this ↗</a></div>
+          <div class="system-row"><div class="system-name"><strong>Vantis HomePro 5</strong><span>Residential</span></div><div class="system-bar"><i style="width:21%"></i></div><div class="system-size">5<small> kW</small></div><p class="system-description">A residential reference package for higher household electricity use, configured for your project.</p><a class="text-link ask-system" href="#assistant" data-prompt="Tell me about the Vantis HomePro 5 reference system.">Ask about this ↗</a></div>
+          <div class="system-row"><div class="system-name"><strong>Vantis HomeMax 10</strong><span>Residential</span></div><div class="system-bar"><i style="width:42%"></i></div><div class="system-size">10<small> kW</small></div><p class="system-description">For larger homes or higher consumption. Requires suitable rooftop area and a project assessment.</p><a class="text-link ask-system" href="#assistant" data-prompt="Tell me about the Vantis HomeMax 10 reference system.">Ask about this ↗</a></div>
+          <div class="system-row commercial"><div class="system-name"><strong>Vantis Business 15</strong><span>Small commercial</span></div><div class="system-bar"><i style="width:63%"></i></div><div class="system-size">15<small> kW</small></div><p class="system-description">A small-business reference option. Final configuration depends on site and business requirements.</p><a class="text-link ask-system" href="#assistant" data-prompt="Tell me about the Vantis Business 15 reference system.">Ask about this ↗</a></div>
+          <div class="system-row commercial"><div class="system-name"><strong>Vantis Business 25</strong><span>Small commercial</span></div><div class="system-bar"><i style="width:100%"></i></div><div class="system-size">25<small> kW</small></div><p class="system-description">A higher-capacity reference for qualifying businesses, subject to a detailed project assessment.</p><a class="text-link ask-system" href="#assistant" data-prompt="Tell me about the Vantis Business 25 reference system.">Ask about this ↗</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="cost">
+      <div class="wrap systems-layout">
+        <div class="split-heading"><span class="eyebrow">Clear expectations</span><h2>Cost, financing and subsidies</h2><p>Good solar planning starts with the project details—not a one-size-fits-all quote.</p><div class="cost-foot"><a class="button button-outline ask-system" href="#assistant" data-prompt="How is the cost of a rooftop solar project decided?">Ask how cost is decided <span aria-hidden="true">↗</span></a></div></div>
+        <div class="cost-grid">
+          <article class="cost-card"><h3>No single price list</h3><p>Project cost depends on system size, equipment, installation requirements, property, location and overall project complexity. A consultation helps scope your project.</p></article>
+          <article class="cost-card"><h3>Financing</h3><p>Options may be available depending on the project, financial institution and your eligibility. Approval and monthly payments can't be promised upfront.</p></article>
+          <article class="cost-card"><h3>Government subsidies</h3><p>Program rules, eligibility and amounts can change. Current benefits need to be verified for your situation; the team can explain what to consider.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section section-tint" id="process">
+      <div class="wrap">
+        <div class="section-heading"><span class="eyebrow">A considered approach</span><h2>From first enquiry to handover</h2><p>Every project moves at the pace of its requirements, site conditions and planning.</p></div>
+        <div class="process-track" aria-label="Project journey">
+          <div class="process-step"><span class="step-number">1</span><strong>Customer enquiry</strong></div><div class="process-step"><span class="step-number">2</span><strong>Requirement assessment</strong></div><div class="process-step"><span class="step-number">3</span><strong>Site or requirement evaluation</strong></div><div class="process-step"><span class="step-number">4</span><strong>System recommendation</strong></div><div class="process-step"><span class="step-number">5</span><strong>Commercial discussion</strong></div><div class="process-step"><span class="step-number">6</span><strong>Installation planning</strong></div><div class="process-step"><span class="step-number">7</span><strong>Installation</strong></div><div class="process-step"><span class="step-number">8</span><strong>System handover</strong></div>
+        </div>
+        <p class="process-note">Installation timing depends on project requirements, site conditions, equipment availability, documentation and scheduling, so Vantis can't promise a date before your project is assessed.</p>
+      </div>
+    </section>
+    <section class="section" id="service-areas">
+      <div class="wrap service-layout">
+        <div class="split-heading"><span class="eyebrow">Selected locations</span><h2>Where we install</h2><p>Vantis currently focuses on selected locations in North India. Availability varies by location—check your city below.</p></div>
+        <div>
+          <form class="city-form" id="cityForm"><input id="cityInput" type="text" placeholder="Type your city, for example Jaipur" aria-label="Enter your city"><button class="button" type="submit">Check my city</button></form>
+          <p class="city-result" id="cityResult" aria-live="polite"></p>
+          <div class="city-groups">
+            <div class="city-group"><h3>Uttar Pradesh</h3><div class="city-tags"><span class="city-tag">Lucknow</span><span class="city-tag">Prayagraj</span><span class="city-tag">Kanpur</span><span class="city-tag">Varanasi</span><span class="city-tag">Noida</span><span class="city-tag">Ghaziabad</span></div></div>
+            <div class="city-group"><h3>Delhi NCR</h3><div class="city-tags"><span class="city-tag">Delhi</span><span class="city-tag">Gurugram</span><span class="city-tag">Noida</span><span class="city-tag">Ghaziabad</span><span class="city-tag">Faridabad</span></div></div>
+            <div class="city-group"><h3>Punjab</h3><div class="city-tags"><span class="city-tag">Ludhiana</span><span class="city-tag">Amritsar</span><span class="city-tag">Jalandhar</span></div></div>
+            <div class="city-group"><h3>Haryana</h3><div class="city-tags"><span class="city-tag">Panipat</span><span class="city-tag">Karnal</span><span class="city-tag">Sonipat</span></div></div>
+            <div class="city-group"><h3>Rajasthan</h3><div class="city-tags"><span class="city-tag">Jaipur</span><span class="city-tag">Kota</span></div></div>
+          </div>
+          <p class="city-note">Don't see your city? Service there isn't confirmed yet. Share your location and the Vantis team can verify it.</p>
+        </div>
+      </div>
+    </section>
+    <section class="support-band">
+      <div class="wrap support-inner"><div><h2>Already a Vantis customer?</h2><p>If your system has a problem or needs maintenance, tell the assistant your name, contact details, project details and what's wrong. It can log a support request for the Vantis team.</p></div><a class="button" href="#assistant" data-prompt="I am an existing Vantis customer and need help with my solar system.">Get support <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section class="section section-tint" id="questions">
+      <div class="wrap faq-layout">
+        <div class="split-heading"><span class="eyebrow">Good to know</span><h2>Common questions</h2><p>Need a more specific answer? Ask the Vantis assistant.</p><a class="button button-outline" href="#assistant">Ask a question <span aria-hidden="true">↗</span></a></div>
+        <div class="faq-list">
+          <details><summary>What does Vantis Energy Solutions do?</summary><p>Vantis helps homes and small businesses explore rooftop solar, including requirements, system options, installation and ongoing support.</p></details>
+          <details><summary>Do you install solar panels?</summary><p>Vantis designs and installs rooftop solar in selected cities. Share your city so the team can check current availability.</p></details>
+          <details><summary>Can you help me choose a solar system?</summary><p>Yes. The reference systems are a starting point, not a final recommendation. A suitable configuration depends on electricity use, rooftop area and a site assessment.</p></details>
+          <details><summary>How much does solar installation cost?</summary><p>Cost varies with system size, equipment, installation requirements, property, location and project complexity. Vantis doesn't publish one fixed price for every project.</p></details>
+          <details><summary>How much can I save?</summary><p>Savings depend on your usage, system design, site conditions, utility rules and other factors. Vantis can't promise a specific saving before your project is assessed.</p></details>
+          <details><summary>Do you provide financing?</summary><p>Financing options may be available depending on the project, provider and eligibility. Approval and payment terms need to be confirmed with the provider.</p></details>
+          <details><summary>Can you help with subsidies?</summary><p>Subsidy schemes and eligibility change. The team can help you understand what to verify, but current benefits should be confirmed for your specific project.</p></details>
+          <details><summary>When will my system be installed?</summary><p>Timing depends on project requirements, site conditions, equipment availability, documentation and scheduling. A date can only be discussed after assessment.</p></details>
+          <details><summary>Do you provide maintenance?</summary><p>Vantis offers monitoring and maintenance support. If you're an existing customer, tell the assistant what is happening so the team can follow up.</p></details>
+          <details><summary>Can I get a callback?</summary><p>Ask the assistant to request a callback and it can guide you through sharing the information needed for the Vantis team.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/><path d="m7 35 4-15m7 15 4-15m6 15 4-15" stroke="#91A8C3" stroke-width="1.3"/></svg></span><span class="brand-copy"><strong>Vantis</strong><span>Energy Solutions</span></span></a><p class="footer-copy">Rooftop solar for homes and small businesses in selected North Indian cities. Start with a question; the Vantis team can help with the next step.</p></div>
+        <div class="footer-links"><a href="#about">About</a><a href="#systems">Systems</a><a href="#cost">Cost</a><a href="#process">Process</a><a href="#service-areas">Service areas</a><a href="#questions">Questions</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Vantis Energy Solutions</span><span>Clear information. Thoughtful solar planning.</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      const API_BASE = "https://vantis-energy-solutions.onrender.com";
+      const log = document.getElementById("chatLog");
+      const form = document.getElementById("chatForm");
+      const input = document.getElementById("chatInput");
+      const send = document.getElementById("sendButton");
+      const sessionKey = "vantis-chat-session";
+      let sessionId = sessionStorage.getItem(sessionKey);
+      let busy = false;
+      const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+      const appendMessage = (text, role, error = false) => {
+        const message = document.createElement("div");
+        message.className = `message ${role === "user" ? "user-message" : "assistant-message"}${error ? " error-message" : ""}`;
+        message.textContent = text;
+        log.append(message);
+        log.scrollTop = log.scrollHeight;
+      };
+      const sendMessage = async (text) => {
+        if (busy || !text.trim()) return;
+        busy = true;
+        input.value = "";
+        input.disabled = true;
+        send.disabled = true;
+        appendMessage(text.trim(), "user");
+        const typing = document.createElement("div");
+        typing.className = "typing";
+        typing.setAttribute("aria-label", "Vantis is thinking");
+        typing.innerHTML = "<i></i><i></i><i></i>";
+        log.append(typing);
+        log.scrollTop = log.scrollHeight;
+        try {
+          const response = await fetch(`${API_BASE}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ session_id: sessionId, message: text.trim() })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.detail || `The assistant couldn't reply (${response.status}). Please try again.`);
+          if (!data.session_id || typeof data.reply !== "string") throw new Error("The assistant returned an unexpected response. Please try again.");
+          sessionId = data.session_id;
+          sessionStorage.setItem(sessionKey, sessionId);
+          typing.remove();
+          appendMessage(data.reply, "assistant");
+        } catch (error) {
+          typing.remove();
+          appendMessage(error instanceof Error ? error.message : "Unable to reach the Vantis assistant. Check your connection and try again.", "assistant", true);
+        } finally {
+          busy = false;
+          input.disabled = false;
+          send.disabled = false;
+          input.focus();
+        }
+      };
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendMessage(input.value);
+      });
+      document.querySelectorAll("[data-prompt]").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const prompt = button.dataset.prompt;
+          if (!prompt) return;
+          if (button.classList.contains("quick-prompt") || button.classList.contains("ask-system") || button.closest(".support-inner")) {
+            event.preventDefault();
+            document.getElementById("assistant").scrollIntoView({ behavior: "smooth", block: "center" });
+            window.setTimeout(() => sendMessage(prompt), 250);
+          }
+        });
+      });
+      document.getElementById("resetChat").addEventListener("click", () => {
+        sessionStorage.removeItem(sessionKey);
+        sessionId = null;
+        log.innerHTML = "";
+        appendMessage("Hi, I'm the Vantis assistant. Ask me about rooftop solar for your home or business, or tell me what you're looking for.", "assistant");
+        input.focus();
+      });
+      const cities = new Set(["lucknow","prayagraj","kanpur","varanasi","noida","ghaziabad","delhi","gurugram","gurgaon","faridabad","ludhiana","amritsar","jalandhar","panipat","karnal","sonipat","jaipur","kota"]);
+      document.getElementById("cityForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const city = document.getElementById("cityInput").value.trim();
+        const result = document.getElementById("cityResult");
+        if (!city) {
+          result.textContent = "Enter a city name to check availability.";
+          return;
+        }
+        const confirmed = cities.has(city.toLowerCase());
+        result.innerHTML = confirmed
+          ? ` ${escapeHtml(city)} is in a listed service location. Final availability is confirmed after project review. <a href="#assistant" data-prompt="Do you install in ${escapeHtml(city)}?">Ask the assistant to check ↗</a>`
+          : `Service in ${escapeHtml(city)} isn't confirmed yet. <a href="#assistant" data-prompt="Can you check whether Vantis installs in ${escapeHtml(city)}?">Ask the sales team to verify ↗</a>`;
+      });
+      document.getElementById("cityResult").addEventListener("click", (event) => {
+        const link = event.target.closest("[data-prompt]");
+        if (link) {
+          event.preventDefault();
+          document.getElementById("assistant").scrollIntoView({ behavior: "smooth", block: "center" });
+          window.setTimeout(() => sendMessage(link.dataset.prompt), 250);
+        }
+      });
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      menuButton.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      });
+      navLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          navLinks.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation");
+        }
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f7f8">
+  <title>Vantis — Lead dashboard</title>
+  <style>
+    :root{--navy:#102e59;--deep:#0b2143;--ink:#203148;--muted:#718094;--sun:#f4a51c;--sky:#f3f7f8;--line:#e2e9ee;--white:#fff;--shadow:0 12px 35px #0b21430b}
+    *{box-sizing:border-box}body{margin:0;background:#f7f9fa;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:238px;padding:24px 17px;background:var(--deep);color:#fff;display:flex;flex-direction:column;z-index:2}
+    .brand{display:flex;align-items:center;gap:11px;margin:0 7px 39px;text-decoration:none}.brand-mark{width:39px;height:39px;display:grid;place-items:center;border-radius:11px;background:#214778}.brand-mark svg{width:28px}.brand strong{display:block;font-size:16px;letter-spacing:-.04em}.brand small{display:block;color:#b3c3d8;font-size:10px}
+    .nav-label{margin:0 10px 9px;color:#879bb5;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.side-link{display:flex;align-items:center;gap:11px;padding:11px 12px;margin:2px 0;border-radius:10px;color:#d0dbea;text-decoration:none;font-size:12px;font-weight:650}.side-link.active,.side-link:hover{background:#ffffff17;color:white}.side-icon{width:19px;text-align:center;font-size:15px}.sidebar-bottom{margin-top:auto;padding:13px 11px;border-top:1px solid #ffffff20;color:#aebed2;font-size:10px;line-height:1.7}.sidebar-bottom strong{display:block;margin-bottom:3px;color:#fff;font-size:11px}
+    .main{margin-left:238px;min-height:100vh}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 34px;background:#fff;border-bottom:1px solid var(--line)}.crumb{color:var(--muted);font-size:11px}.crumb strong{color:var(--ink)}.top-actions{display:flex;align-items:center;gap:11px}.health{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:10px}.health i{width:7px;height:7px;border-radius:50%;background:#d7a845}.health.ok i{background:#40a27c}.health.down i{background:#d36b5c}.avatar{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:#eaf0f5;color:var(--navy);font-size:11px;font-weight:800}
+    .content{max-width:1450px;margin:auto;padding:31px 34px 48px}.heading-row{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:23px}.eyebrow{color:#9c6b10;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.heading-row h1{margin:4px 0 2px;color:var(--navy);font-size:28px;letter-spacing:-.045em}.heading-row p{margin:0;color:var(--muted);font-size:11px}.btn{min-height:37px;padding:0 14px;border:0;border-radius:9px;background:var(--sun);color:var(--deep);font-size:11px;font-weight:750}.btn:hover{background:#ffb629}.btn.secondary{border:1px solid var(--line);background:#fff;color:var(--navy)}
+    .api-panel{display:flex;align-items:center;gap:10px;margin-bottom:19px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.api-panel label{flex:none;color:var(--ink);font-size:10px;font-weight:750}.api-panel input{min-width:0;flex:1;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:8px;outline:none;font-size:11px}.api-panel input:focus{border-color:#7291b5;box-shadow:0 0 0 3px #7291b520}.api-message{color:var(--muted);font-size:10px}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:17px}.metric{position:relative;min-height:112px;padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}.metric:after{content:"";position:absolute;left:0;top:15px;bottom:15px;width:3px;border-radius:0 3px 3px 0;background:var(--sun)}.metric-label{color:var(--muted);font-size:10px;font-weight:650}.metric-value{margin-top:7px;color:var(--navy);font-size:27px;font-weight:800;letter-spacing:-.04em}.metric-note{color:#96a1ae;font-size:9px}
+    .grid-main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(230px,.7fr);gap:16px;align-items:start}.panel{border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 17px;border-bottom:1px solid var(--line)}.panel-head h2{margin:0;color:var(--navy);font-size:13px}.panel-head p{margin:3px 0 0;color:var(--muted);font-size:9px}.filters{display:flex;gap:7px}.filters input,.filters select{height:32px;max-width:140px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:10px;outline:none}.filters input{width:122px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{padding:10px 13px;background:#fafbfc;color:#8491a1;text-align:left;font-size:9px;font-weight:750;text-transform:uppercase;letter-spacing:.055em}td{padding:12px 13px;border-top:1px solid #eff2f4;color:#45556a;font-size:10px}tbody tr{cursor:pointer}tbody tr:hover{background:#fbfcfd}.lead-name{color:var(--navy);font-weight:750}.lead-sub{margin-top:2px;color:#99a4b1;font-size:9px}.badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:99px;font-size:9px;font-weight:800;text-transform:capitalize}.badge.hot{background:#fdebe8;color:#aa493c}.badge.warm{background:#fff4da;color:#986a0c}.badge.cold{background:#eaf0f4;color:#637487}.badge.neutral{background:#eaf5ef;color:#327052}
+    .empty{padding:34px 18px;text-align:center;color:var(--muted);font-size:11px}.empty strong{display:block;margin-bottom:5px;color:var(--navy);font-size:13px}.city-list{padding:5px 16px 12px}.city-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eff2f4}.city-row:last-child{border-bottom:0}.city-rank{width:23px;height:23px;display:grid;place-items:center;border-radius:7px;background:#f0f4f7;color:var(--navy);font-size:9px;font-weight:800}.city-name{flex:1;color:#4c5c6e;font-size:10px}.city-count{color:var(--navy);font-size:10px;font-weight:800}.side-panel{margin-top:16px}.support-list{padding:2px 16px}.support-item{padding:12px 0;border-bottom:1px solid #eff2f4}.support-item:last-child{border:0}.support-title{display:flex;justify-content:space-between;gap:8px;color:var(--navy);font-size:10px;font-weight:750}.support-copy{margin-top:4px;color:var(--muted);font-size:9px;line-height:1.6;overflow-wrap:anywhere}.support-date{margin-top:5px;color:#9aa5b1;font-size:8px}
+    .overlay{position:fixed;inset:0;z-index:5;display:none;place-items:center;padding:20px;background:#091a3477}.overlay.open{display:grid}.modal{width:min(600px,100%);max-height:88vh;overflow:auto;border-radius:16px;background:#fff;box-shadow:0 30px 90px #06132666}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;border-bottom:1px solid var(--line)}.modal-head h2{margin:0;color:var(--navy);font-size:16px}.close{width:31px;height:31px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--muted);font-size:18px}.modal-body{padding:17px 20px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail{padding:10px;border-radius:9px;background:#f7f9fa}.detail small{display:block;color:var(--muted);font-size:9px}.detail strong{display:block;margin-top:3px;color:var(--ink);font-size:11px;overflow-wrap:anywhere}.transcript{margin-top:16px}.transcript h3{color:var(--navy);font-size:12px}.turn{margin:8px 0;padding:9px 11px;border-radius:9px;background:#f1f5f7;font-size:10px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}.turn.customer{margin-left:25px;background:#edf3fb}
+    .toast{position:fixed;right:18px;bottom:18px;z-index:10;max-width:calc(100% - 36px);padding:11px 14px;border-radius:10px;background:var(--deep);color:white;font-size:11px;opacity:0;transform:translateY(6px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.mobile-brand{display:none}
+    @media(max-width:1050px){.sidebar{width:200px}.main{margin-left:200px}.content{padding-inline:22px}.topbar{padding-inline:22px}.metric-grid{grid-template-columns:repeat(2,1fr)}.grid-main{grid-template-columns:1fr}.right-column{display:grid;grid-template-columns:1fr 1fr;gap:14px}.side-panel{margin-top:0}}
+    @media(max-width:700px){.sidebar{display:none}.main{margin-left:0}.topbar{height:60px;padding-inline:16px}.mobile-brand{display:flex;align-items:center;gap:8px;color:var(--navy);font-size:12px;font-weight:800}.mobile-brand .brand-mark{width:28px;height:28px}.mobile-brand svg{width:20px}.content{padding:24px 15px 35px}.heading-row{align-items:flex-start}.heading-row h1{font-size:24px}.heading-row .btn{min-height:34px;padding:0 10px;font-size:10px}.api-panel{flex-wrap:wrap}.api-panel input{flex-basis:100%;order:3}.api-message{flex:1;text-align:right}.metric-grid{gap:8px}.metric{min-height:99px;padding:13px}.metric-value{font-size:23px}.panel-head{align-items:flex-start;flex-direction:column}.filters{width:100%}.filters input{flex:1;max-width:none}.filters select{max-width:120px}.right-column{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:380px){.metric-grid{grid-template-columns:1fr 1fr}.metric-label{font-size:9px}.detail-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Vantis home"><span class="brand-mark"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/></svg></span><span><strong>Vantis</strong><small>Energy Solutions</small></span></a>
+    <p class="nav-label">Workspace</p>
+    <a class="side-link active" href="#overview"><span class="side-icon">▦</span>Overview</a>
+    <a class="side-link" href="#leads"><span class="side-icon">◉</span>Leads</a>
+    <a class="side-link" href="#support"><span class="side-icon">⌁</span>Support requests</a>
+    <div class="sidebar-bottom"><strong>Lead workspace</strong>Internal Vantis dashboard<br>Protected with your API key</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="mobile-brand"><span class="brand-mark"><svg viewBox="0 0 40 40" fill="none"><circle cx="29" cy="10" r="5" fill="#F4A51C"/><path d="M8 27h24l-2 7H6l2-7Zm4-9h7l-2 7H10l2-7Zm10 0h8l-2 7h-8l2-7Z" fill="white"/></svg></span>Vantis workspace</div><div class="crumb">Workspace&nbsp; / &nbsp;<strong>Overview</strong></div><div class="top-actions"><span class="health" id="health"><i></i><span id="healthText">Not connected</span></span><span class="avatar">VS</span></div></header>
+    <div class="content" id="overview">
+      <div class="heading-row"><div><span class="eyebrow">Sales overview</span><h1>Good work starts here.</h1><p>Keep an eye on enquiries, lead activity and customer support.</p></div><button class="btn" id="refreshButton" type="button">↻ &nbsp; Refresh data</button></div>
+      <div class="api-panel"><label for="apiKey">Dashboard API key</label><input id="apiKey" type="password" autocomplete="off" placeholder="Enter the configured dashboard key"><button class="btn secondary" id="saveKey" type="button">Connect</button><span class="api-message" id="apiMessage">Key stays in this browser session.</span></div>
+      <section class="metric-grid" aria-label="Lead statistics">
+        <article class="metric"><div class="metric-label">Total leads</div><div class="metric-value" id="totalLeads">—</div><div class="metric-note">All captured enquiries</div></article>
+        <article class="metric"><div class="metric-label">Average lead score</div><div class="metric-value" id="avgScore">—</div><div class="metric-note">Out of 100</div></article>
+        <article class="metric"><div class="metric-label">Callbacks requested</div><div class="metric-value" id="callbacks">—</div><div class="metric-note">Requested by customers</div></article>
+        <article class="metric"><div class="metric-label">Open support</div><div class="metric-value" id="openSupport">—</div><div class="metric-note">Needs team attention</div></article>
+      </section>
+      <div class="grid-main">
+        <section class="panel" id="leads">
+          <div class="panel-head"><div><h2>Recent leads</h2><p>Select a lead to review details and its conversation.</p></div><div class="filters"><input id="searchLead" type="search" placeholder="Search name or city" aria-label="Search leads"><select id="statusFilter" aria-label="Filter by lead status"><option value="">All statuses</option><option value="hot">Hot</option><option value="warm">Warm</option><option value="cold">Cold</option></select></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Contact</th><th>Location</th><th>Requirement</th><th>Status</th><th>Score</th></tr></thead><tbody id="leadRows"><tr><td colspan="5"><div class="empty"><strong>Connect to load leads</strong>Enter your dashboard API key above.</div></td></tr></tbody></table></div>
+        </section>
+        <div class="right-column">
+          <section class="panel"><div class="panel-head"><div><h2>Top enquiry cities</h2><p>Where your leads are coming from</p></div></div><div class="city-list" id="cityList"><div class="empty">Connect to view city activity.</div></div></section>
+          <section class="panel side-panel" id="support"><div class="panel-head"><div><h2>Recent support requests</h2><p>Latest customer follow-ups</p></div></div><div class="support-list" id="supportList"><div class="empty">Connect to view support requests.</div></div></section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="overlay" id="leadOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><section class="modal"><div class="modal-head"><h2 id="modalTitle">Lead details</h2><button class="close" id="closeModal" aria-label="Close lead details">×</button></div><div class="modal-body" id="leadDetails"></div></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      const API_BASE = "https://vantis-energy-solutions.onrender.com";
+      const keyInput = document.getElementById("apiKey");
+      const apiMessage = document.getElementById("apiMessage");
+      const rows = document.getElementById("leadRows");
+      const state = { leads: [], stats: null, support: [] };
+      let loading = false;
+      keyInput.value = sessionStorage.getItem("vantis-dashboard-key") || "";
+      const escape = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+      const notify = (message) => {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        window.setTimeout(() => toast.classList.remove("show"), 3200);
+      };
+      const setHealth = (status, message) => {
+        const health = document.getElementById("health");
+        health.className = `health ${status}`;
+        document.getElementById("healthText").textContent = message;
+      };
+      const request = async (path) => {
+        const response = await fetch(`${API_BASE}${path}`, { headers: { "X-API-Key": keyInput.value.trim() } });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          if (response.status === 401) throw new Error("API key is invalid or missing. Check the configured dashboard key.");
+          throw new Error(data.detail || `Request failed (${response.status}).`);
+        }
+        return data;
+      };
+      const renderStats = (stats) => {
+        document.getElementById("totalLeads").textContent = stats.total_leads ?? 0;
+        document.getElementById("avgScore").textContent = stats.avg_score ?? 0;
+        document.getElementById("callbacks").textContent = stats.callbacks_requested ?? 0;
+        document.getElementById("openSupport").textContent = stats.open_support_requests ?? 0;
+        const cities = Array.isArray(stats.by_city) ? stats.by_city : [];
+        document.getElementById("cityList").innerHTML = cities.length ? cities.map((item, index) => `<div class="city-row"><span class="city-rank">${index + 1}</span><span class="city-name">${escape(item.city || "Unknown")}</span><span class="city-count">${escape(item.count)}</span></div>`).join("") : '<div class="empty">No city activity yet.</div>';
+      };
+      const filteredLeads = () => {
+        const term = document.getElementById("searchLead").value.trim().toLowerCase();
+        const status = document.getElementById("statusFilter").value.toUpperCase();
+        return state.leads.filter((lead) => {
+          const matchesStatus = !status || String(lead.lead_status || "").toUpperCase() === status;
+          const matchesTerm = !term || `${lead.name || ""} ${lead.city || ""} ${lead.email || ""} ${lead.phone || ""}`.toLowerCase().includes(term);
+          return matchesStatus && matchesTerm;
+        });
+      };
+      const renderLeads = () => {
+        const leads = filteredLeads();
+        if (!leads.length) {
+          rows.innerHTML = `<tr><td colspan="5"><div class="empty"><strong>${state.leads.length ? "No matching leads" : "No leads yet"}</strong>${state.leads.length ? "Try changing your filters." : "New enquiries will appear here."}</div></td></tr>`;
+          return;
+        }
+        rows.innerHTML = leads.map((lead) => `<tr data-id="${escape(lead.id)}"><td><span class="lead-name">${escape(lead.name || "New enquiry")}</span><span class="lead-sub">${escape(lead.phone || lead.email || "No contact yet")}</span></td><td>${escape(lead.city || "—")}${lead.state ? `<span class="lead-sub">${escape(lead.state)}</span>` : ""}</td><td>${escape(lead.intent || lead.package || lead.property_type || (lead.system_size_kw ? `${lead.system_size_kw} kW system` : "—"))}</td><td><span class="badge ${escape(String(lead.lead_status || "cold").toLowerCase())}">${escape(lead.lead_status || "COLD")}</span></td><td>${escape(lead.lead_score ?? "—")}</td></tr>`).join("");
+      };
+      const renderSupport = (items) => {
+        const list = document.getElementById("supportList");
+        list.innerHTML = items.length ? items.slice(0, 6).map((item) => `<article class="support-item"><div class="support-title"><span>${escape(item.name || "Customer request")}</span><span class="badge ${String(item.status).toLowerCase() === "open" ? "warm" : "neutral"}">${escape(item.status || "open")}</span></div><div class="support-copy">${escape(item.issue || item.project || "Support follow-up")}${item.contact ? ` · ${escape(item.contact)}` : ""}</div><div class="support-date">${item.created_at ? escape(new Date(item.created_at).toLocaleString()) : ""}</div></article>`).join("") : '<div class="empty">No support requests yet.</div>';
+      };
+      const load = async () => {
+        if (loading) return;
+        if (!keyInput.value.trim()) {
+          setHealth("", "Not connected");
+          apiMessage.textContent = "Enter your dashboard key to connect.";
+          return;
+        }
+        loading = true;
+        document.getElementById("refreshButton").disabled = true;
+        apiMessage.textContent = "Loading dashboard…";
+        try {
+          const [stats, leads, support] = await Promise.all([
+            request("/stats"),
+            request("/leads?limit=100"),
+            request("/support-requests?limit=20")
+          ]);
+          if (!stats || !Array.isArray(leads) || !Array.isArray(support)) throw new Error("The dashboard API returned an unexpected response.");
+          state.stats = stats;
+          state.leads = leads;
+          state.support = support;
+          renderStats(stats);
+          renderLeads();
+          renderSupport(support);
+          setHealth("ok", "Connected");
+          apiMessage.textContent = `Updated ${new Date().toLocaleTimeString()}`;
+          sessionStorage.setItem("vantis-dashboard-key", keyInput.value.trim());
+        } catch (error) {
+          setHealth("down", "Connection issue");
+          apiMessage.textContent = error instanceof Error ? error.message : "Unable to load dashboard data.";
+          notify(apiMessage.textContent);
+        } finally {
+          loading = false;
+          document.getElementById("refreshButton").disabled = false;
+        }
+      };
+      const openLead = async (id) => {
+        const overlay = document.getElementById("leadOverlay");
+        const body = document.getElementById("leadDetails");
+        document.getElementById("modalTitle").textContent = `Lead #${id}`;
+        body.innerHTML = '<div class="empty">Loading lead details…</div>';
+        overlay.classList.add("open");
+        try {
+          const result = await request(`/leads/${encodeURIComponent(id)}`);
+          if (!result.lead) throw new Error("Lead details were not returned.");
+          const lead = result.lead;
+          const fields = [
+            ["Name", lead.name], ["Phone", lead.phone], ["Email", lead.email], ["City", lead.city],
+            ["Property", lead.property_type], ["Business type", lead.business_type], ["System size", lead.system_size_kw ? `${lead.system_size_kw} kW` : ""],
+            ["Monthly bill", lead.monthly_bill ? `₹${lead.monthly_bill}` : ""], ["Lead status", lead.lead_status], ["Lead score", lead.lead_score],
+            ["Location status", lead.location_status], ["Recommended action", lead.recommended_action], ["Created", lead.created_at ? new Date(lead.created_at).toLocaleString() : ""]
+          ];
+          body.innerHTML = `<div class="detail-grid">${fields.filter(([, value]) => value !== null && value !== undefined && value !== "").map(([name, value]) => `<div class="detail"><small>${escape(name)}</small><strong>${escape(value)}</strong></div>`).join("")}</div><div class="transcript"><h3>Conversation</h3>${Array.isArray(result.transcript) && result.transcript.length ? result.transcript.map((turn) => `<div class="turn ${turn.role === "customer" ? "customer" : ""}"><strong>${turn.role === "customer" ? "Customer" : "Vantis"}:</strong> ${escape(turn.text)}</div>`).join("") : '<p class="support-copy">No conversation transcript is available for this lead.</p>'}</div>`;
+        } catch (error) {
+          body.innerHTML = `<div class="empty">${escape(error instanceof Error ? error.message : "Unable to load lead details.")}</div>`;
+        }
+      };
+      document.getElementById("saveKey").addEventListener("click", () => {
+        if (!keyInput.value.trim()) {
+          apiMessage.textContent = "Enter your dashboard API key to connect.";
+          keyInput.focus();
+          return;
+        }
+        load();
+      });
+      keyInput.addEventListener("keydown", (event) => { if (event.key === "Enter") load(); });
+      document.getElementById("refreshButton").addEventListener("click", load);
+      document.getElementById("searchLead").addEventListener("input", renderLeads);
+      document.getElementById("statusFilter").addEventListener("change", renderLeads);
+      rows.addEventListener("click", (event) => {
+        const row = event.target.closest("tr[data-id]");
+        if (row) openLead(row.dataset.id);
+      });
+      document.getElementById("closeModal").addEventListener("click", () => document.getElementById("leadOverlay").classList.remove("open"));
+      document.getElementById("leadOverlay").addEventListener("click", (event) => {
+        if (event.target.id === "leadOverlay") event.currentTarget.classList.remove("open");
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") document.getElementById("leadOverlay").classList.remove("open");
+      });
+      if (keyInput.value) load();
+    })();
+  </script>
+</body>
+</html>
